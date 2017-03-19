@@ -1,5 +1,7 @@
 import React, {PropTypes} from 'react'
 
+import s from './MessageList.scss'
+
 const MessageList = ({messages}) => {
   return (
     <div>
@@ -8,7 +10,7 @@ const MessageList = ({messages}) => {
         {
           messages.map((message, i) => {
             return (
-              <li key={i}>
+              <li key={i} className={s.item}>
                 {
                   message.user !== 'SYSTEM'
                   ? <strong>{message.user} :</strong>
