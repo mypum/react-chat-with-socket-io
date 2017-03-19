@@ -11,14 +11,16 @@ const MessageList = ({messages, selfuser}) => {
     if (message.user !== 'SYSTEM') {
       return (
         <div className={cx({self: message.user === selfuser})}>
-          <strong>{message.user} :</strong>
-          <span>{message.text}</span>
+          <div className={s.bubble}>
+            {message.text}
+          </div>
+          <span className={s.username}>{message.user}</span>
         </div>
       )
     }
 
     return (
-      <span>{message.text}</span>
+      <span className={s.textSystem}>{message.text}</span>
     )
   }
   return (
@@ -46,7 +48,8 @@ const MessageList = ({messages, selfuser}) => {
 }
 
 MessageList.propTypes = {
-  messages: PropTypes.array.isRequired
+  messages: PropTypes.array.isRequired,
+  selfuser: PropTypes.string
 }
 
 export default MessageList
