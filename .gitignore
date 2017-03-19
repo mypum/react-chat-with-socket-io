@@ -1,0 +1,9 @@
+.DS_Store
+.npm
+
+logs
+*.log
+*.map
+
+node_modules
+static/build
