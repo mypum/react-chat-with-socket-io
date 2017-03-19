@@ -6,9 +6,9 @@ const MessageList = ({messages}) => {
       <h2>Conversation</h2>
       <ul>
         {
-          messages.map((msg, i) => {
+          messages.map((message, i) => {
             return (
-              <li>{msg}</li>
+              <li key={i}>{message.text}</li>
             )
           })
         }

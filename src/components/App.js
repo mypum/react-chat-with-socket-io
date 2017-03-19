@@ -15,10 +15,19 @@ export default class App extends React.Component {
       messages: [],
       text: ''
     }
+
+    this.handleMessageSubmit = this.handleMessageSubmit.bind(this)
+    this.messageRecieve = this.messageRecieve.bind(this)
   }
 
   componentDidMount () {
-    socket.emit('chat', 'Hello')
+    socket.on('send:message', this.messageRecieve)
+  }
+
+  messageRecieve (message) {
+    let {messages} = this.state
+    messages.push(message)
+    this.setState({messages})
   }
 
   handleMessageSubmit (message) {

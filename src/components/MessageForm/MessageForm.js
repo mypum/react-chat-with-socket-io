@@ -14,9 +14,11 @@ class MessageForm extends Component {
 
   handleSubmit (e) {
     e.preventDefault()
+
     let message = {
       text: this.state.text
     }
+
     this.props.onMessageSubmit(message)
     this.setState({ text: '' })
   }
@@ -29,7 +31,6 @@ class MessageForm extends Component {
     return (
       <div>
         <h3>Write New Message</h3>
-        <p>{this.state.text}</p>
         <form onSubmit={this.handleSubmit}>
           <input
             onChange={this.changeHandler}
