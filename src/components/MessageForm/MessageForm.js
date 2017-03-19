@@ -16,6 +16,7 @@ class MessageForm extends Component {
     e.preventDefault()
 
     let message = {
+      user: this.props.user,
       text: this.state.text
     }
 
@@ -43,7 +44,8 @@ class MessageForm extends Component {
 }
 
 MessageForm.propTypes = {
-  onMessageSubmit: PropTypes.func.isRequired
+  onMessageSubmit: PropTypes.func.isRequired,
+  user: PropTypes.string.isRequired
 }
 
 export default MessageForm

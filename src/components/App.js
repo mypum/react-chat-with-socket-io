@@ -3,6 +3,7 @@ import io from 'socket.io-client'
 
 import MessageForm from './MessageForm/MessageForm'
 import MessageList from './MessageList/MessageList'
+import UserList from './UserList/UsersList'
 
 const socket = io()
 
@@ -11,26 +12,55 @@ export default class App extends React.Component {
     super(props)
 
     this.state = {
+      user: '',
       users: [],
       messages: [],
       text: ''
     }
-
-    this.handleMessageSubmit = this.handleMessageSubmit.bind(this)
-    this.messageRecieve = this.messageRecieve.bind(this)
   }
 
   componentDidMount () {
-    socket.on('send:message', this.messageRecieve)
+    socket.on('init', this._initialize)
+    socket.on('send:message', this._messageRecieve)
+    socket.on('user:join', this._userJoined)
+    socket.on('user:left', this._userLeft)
   }
 
-  messageRecieve (message) {
+  _initialize = (data) => {
+    var {users, name} = data
+    this.setState({users, user: name})
+  }
+
+  _messageRecieve = (message) => {
     let {messages} = this.state
     messages.push(message)
     this.setState({messages})
   }
 
-  handleMessageSubmit (message) {
+  _userJoined = (data) => {
+    var {users, messages} = this.state
+    var {name} = data
+    users.push(name)
+    messages.push({
+      user: 'SYSTEM',
+      text: name + ' Joined'
+    })
+    this.setState({users, messages})
+  }
+
+  _userLeft = (data) => {
+    var {users, messages} = this.state
+    var {name} = data
+    var index = users.indexOf(name)
+    users.splice(index, 1)
+    messages.push({
+      user: 'SYSTEM',
+      text: name + ' Left'
+    })
+    this.setState({users, messages})
+  }
+
+  handleMessageSubmit = (message) => {
     let {messages} = this.state
     messages.push(message)
     this.setState({messages})
@@ -40,8 +70,12 @@ export default class App extends React.Component {
   render () {
     return (
       <div>
+        <UserList users={this.state.users} />
         <MessageList messages={this.state.messages} />
-        <MessageForm onMessageSubmit={this.handleMessageSubmit} />
+        <MessageForm
+          onMessageSubmit={this.handleMessageSubmit}
+          user={this.state.user}
+        />
       </div>
     )
   }

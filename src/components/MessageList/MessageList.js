@@ -8,7 +8,18 @@ const MessageList = ({messages}) => {
         {
           messages.map((message, i) => {
             return (
-              <li key={i}>{message.text}</li>
+              <li key={i}>
+                {
+                  message.user !== 'SYSTEM'
+                  ? <strong>{message.user} :</strong>
+                  : null
+                }
+                {
+                  message.user !== 'SYSTEM'
+                  ? <span>{message.text}</span>
+                  : <span>{message.text}</span>
+                }
+              </li>
             )
           })
         }
