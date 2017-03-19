@@ -3,7 +3,9 @@ import io from 'socket.io-client'
 
 import MessageForm from './MessageForm/MessageForm'
 import MessageList from './MessageList/MessageList'
-import UserList from './UserList/UsersList'
+import UserList from './UserList/UserList'
+
+import s from './App.scss'
 
 const socket = io()
 
@@ -15,7 +17,8 @@ export default class App extends React.Component {
       user: '',
       users: [],
       messages: [],
-      text: ''
+      text: '',
+      selfUser: ''
     }
   }
 
@@ -28,6 +31,7 @@ export default class App extends React.Component {
 
   _initialize = (data) => {
     var {users, name} = data
+    this.setState({selfUser: name})
     this.setState({users, user: name})
   }
 
@@ -69,13 +73,18 @@ export default class App extends React.Component {
 
   render () {
     return (
-      <div>
+      <div className={s.container}>
         <UserList users={this.state.users} />
-        <MessageList messages={this.state.messages} />
-        <MessageForm
-          onMessageSubmit={this.handleMessageSubmit}
-          user={this.state.user}
-        />
+        <div className={s.msgbox}>
+          <MessageList
+            messages={this.state.messages}
+            selfuser={this.state.selfUser}
+          />
+          <MessageForm
+            onMessageSubmit={this.handleMessageSubmit}
+            user={this.state.user}
+          />
+        </div>
       </div>
     )
   }

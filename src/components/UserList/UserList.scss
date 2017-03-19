@@ -1,0 +1,28 @@
+.container {
+  background-color: #3b3e99;
+  color: #fff;
+  flex: 1 0 250px;
+  max-width: 250px;
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  padding: 20px;
+}
+
+.title {
+  font-family: prompt;
+  text-transform: uppercase;
+  text-align: center;
+  font-size: 16px;
+}
+
+.heading {
+  border-bottom: 1px solid #30327b;
+  margin-left: -20px;
+  margin-right: -20px;
+  padding-bottom: 15px;
+}
+
+.item {
+  font-family: prompt;
+  padding: 5px 0;
+}

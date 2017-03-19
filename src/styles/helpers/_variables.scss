@@ -32,7 +32,7 @@ $grid-breakpoints: (
 ) !default;
 
 // COLOR
-$brand-primary: 	#ed1c24 !default;
+$brand-primary: 	#3b3e99 !default;
 $gray: 				#999999 !default;
 $gray-lighter: 		lighten($gray, 29.5%) !default;
 $gray-light: 		lighten($gray, 20%) !default;
@@ -41,7 +41,7 @@ $gray-darker: 		darken($gray, 30%) !default;
 
 
 //** Background color for `<body>`.
-$body-bg:               #fff !default;
+$body-bg:               #d7d8f1 !default;
 
 $wrapper-bg-color:		#fff !default;
 

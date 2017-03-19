@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import s from './MessageForm.scss'
 
 class MessageForm extends Component {
   constructor (props) {
@@ -30,12 +31,13 @@ class MessageForm extends Component {
 
   render () {
     return (
-      <div>
-        <h3>Write New Message</h3>
+      <div className={s.container}>
         <form onSubmit={this.handleSubmit}>
           <input
+            className={s.input}
             onChange={this.changeHandler}
             value={this.state.text}
+            placeholder="type something..."
           />
         </form>
       </div>

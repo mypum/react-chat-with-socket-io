@@ -1,0 +1,17 @@
+.container {
+  max-width: 900px;
+  height: 500px;
+  margin: 30px auto;
+  background: #fff;
+  border-radius: 8px;
+
+  display: flex;
+}
+
+.msgbox {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+  align-items: stretch;
+  flex-direction: column
+}

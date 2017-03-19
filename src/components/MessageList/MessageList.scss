@@ -1,3 +1,23 @@
+.container {
+  flex-grow: 1;
+  overflow: hidden;
+  padding: 20px;
+}
 .item {
   color: red;
+  display: flex;
+  &.itemself {
+    justify-content: flex-end;
+  }
+  .self {
+    float: right;
+  }
+}
+
+.textSystem {
+  width: 100%;
+  display: block;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: #ccc;
 }
